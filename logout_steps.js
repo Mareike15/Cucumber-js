@@ -18,15 +18,21 @@ Given('I insert my password', function(){
 Given('I click on "Sign In"-Button', function(){
   return this.driver.findElement({id: "btn_signin"}).then(function(element) {
     return element.click();
-    var condition = seleniumWebdriver.until.titleContains("DevOps Backbone Initiative");
-    return this.driver.wait(condition, 10000);
     });
   });
+Given('I wait for {text:stringInDoubleQuotes}', function(text){
+    var xpath = "//*[contains(text(),'" + text + "')]";
+    var condition = seleniumWebdriver.until.elementLocated({xpath: xpath});
+    return this.driver.wait(condition.fn, 10000); //Error --> Invalid Locator
+    });
   When('I click on “Logout”-Button', function(){
-    return this.driver.findElement({id:"logout"});
+    return this.driver.findElement({id:"logout"}).then(function(element){
+      return element.click();
       });
     });
   Then('I should see the Confirmation {arg1:stringInDoubleQuotes}', function(arg1){
+    var condition = seleniumWebdriver.until.titleContains("IBM W3 ID");
+    return this.driver.wait(condition.fn, 100000);
     return this.driver.findElement({arg1});
     });
   });

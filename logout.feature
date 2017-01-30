@@ -8,5 +8,6 @@ Feature: Log Out
     Given I insert my UserID
     Given I insert my password
     Given I click on "Sign In"-Button
+    Given I wait for "Your DevOps Experience"
     When I click on “Logout”-Button
     Then I should see the Confirmation "You are now logged out"
