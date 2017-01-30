@@ -19,21 +19,23 @@ defineSupportCode(function({Given, When, And, Then}) {
     return this.driver.findElement({id: "btn_signin"}).then(function(element) {
       return element.click();
       var condition = seleniumWebdriver.until.titleContains("DevOps Backbone Initiative");
-      return this.driver.wait(condition, 10000);
+      return this.driver.wait(condition.fn, 10000);
       });
     });
-  When('I click on the “Delete”-button', function (){
-    return this.driver.findElement({id:"delete"}).then(function(element){
+  When('I click the "Delete"-Button', function (){
+    return this.driver.findElement({name:"delete"}).then(function(element){
       return element.click();
       });
     });
-  When('I click the button "OK"',function(){
-    return this.driver.findElement({id:"ok"}).then(function(element){
+  When('I click the "OK"-Button',function(){
+    return this.driver.findElement({name:"ok"}).then(function(element){
       return element.click();
       });
     });
-  Then('Then I should see {arg1:stringInDoubleQuotes}-Message', function (arg1) {
-    var condition = seleniumWebdriver.until.findElement(arg1); //--> nicht titleContains sondern TEXT soll gesucht werden(das Wort "Bye")
-    return this.driver.wait(condition, 10000);
+  Then('I should see {arg2:stringInDoubleQuotes}-Message', function (arg2) {
+    var xpath = "//*[contains(text(),'" + arg2 + "')]";
+    var condition = seleniumWebdriver.until.elementLocated({xpath: xpath});
+    return this.driver.wait(condition.fn, 10000);
+
+  });
     });
-});
