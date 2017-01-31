@@ -20,7 +20,7 @@ Given('I click on "Sign In"-Button', function(){
     return element.click();
     });
   });
-Given('I wait for {text:stringInDoubleQuotes}', function(text){
+Given('I wait for {text:stringInDoubleQuotes}', function(text){ //Text: Your DevOps Experience
     var xpath = "//*[contains(text(),'" + text + "')]";
     var condition = seleniumWebdriver.until.elementLocated({xpath: xpath});
     return this.driver.wait(condition.fn, 10000); //Error --> Invalid Locator
